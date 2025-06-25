@@ -10,7 +10,7 @@
             (cb/index-path (io/file "src" "main") {})
             (cb/generate
               '{:main
-                {:entries [mvp.frontend]}})
+                {:include [wthjh.*]}})
             (cb/minify)
             (cb/write-outputs-to (io/file "public" "css")))]
 

@@ -16,7 +16,7 @@
   (server/start!)
 
   ;; optional, could also do this from the UI
-  (shadow/watch :app)
+  ;; (shadow/watch :app)
 
   ;; build css once on start
   (build/css-release)

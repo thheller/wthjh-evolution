@@ -3,15 +3,20 @@
  {:aliases [:dev]}
 
  :dev-http
- {5001 "public"}
+ {5010 "public"}
 
  :builds
- {:app
-  {:target :browser
+ {:interpreted
+  {:target :esm
    :modules
-   {:main
-    {:init-fn mvp.frontend/init
-     :preloads [shadow.grove.preload]}}
-
+   {:main {:init-fn wthjh.interpreted/init}}
    :output-dir "public/js"
-   }}}
+   }
+
+  :fragments
+  {:target :esm
+   :modules
+   {:main {:init-fn wthjh.fragments/init}}
+   :output-dir "public/js"
+   }
+  }}
