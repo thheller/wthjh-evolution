@@ -1,0 +1,12 @@
+{
+  "name": "shadow-stack-mvp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "clj -M:dev:start",
+    "release": "npx shadow-cljs run build/all"
+  },
+  "devDependencies": {
+    "shadow-cljs": "2.28.21"
+  }
+}

@@ -1,0 +1,34 @@
+{:paths
+ ["src/dev"
+  "src/main"
+  "src/test"]
+
+ :deps
+ {com.thheller/shadow-grove {:mvn/version "1.0.3"}
+  com.thheller/shadow-css {:mvn/version "0.6.0"}}
+
+ :aliases
+ {:dev
+  {:extra-deps
+   {thheller/shadow-cljs {:mvn/version "3.0.2"}}}
+
+  :start
+  {:main-opts ["-m" "repl"]
+
+   ;; Java24 is rather loud about libraries using some stuff they aren't supposed to
+   ;; will have to wait for the libs to fix those, until then shut them up
+   :jvm-opts
+   ["--sun-misc-unsafe-memory-access=allow"
+    "--enable-native-access=ALL-UNNAMED"]}
+
+  :release
+  {:main-opts ["-m" "shadow.cljs.devtools.cli" "run" "build/all"]}
+
+  ;; if you want some grove/css features not in any release
+  ;; you can make local git clones, or use :git/url deps here
+  ;; THIS IS OPTIONAL AND PROPER RELEASES ARE RECOMMENDED
+  :local-dev
+  {:override-deps
+   {com.thheller/shadow-grove {:local/root "../shadow-grove"}
+    com.thheller/shadow-css {:local/root "../shadow-css"}}}
+  }}
