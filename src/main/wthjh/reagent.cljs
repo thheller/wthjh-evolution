@@ -91,7 +91,7 @@
 
 (defn ui-root [state]
   [:div
-   [:h1 {:class (css :p-4 :font-bold :text-lg)} "Interpreted Hiccup"]
+   [:h1 {:class (css :p-4 :font-bold :text-lg)} "Reagent"]
 
    [:div {:class (css :flex)}
     [:table {:class (css :flex-1)}
