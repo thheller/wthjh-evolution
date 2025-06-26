@@ -17,6 +17,11 @@
   {:target :esm
    :modules
    {:main {:init-fn wthjh.fragments/init}}
-   :output-dir "public/js"
-   }
+   :output-dir "public/js"}
+
+  :reagent
+  {:target :esm
+   :modules
+   {:main {:init-fn wthjh.reagent/init}}
+   :output-dir "public/js"}
   }}

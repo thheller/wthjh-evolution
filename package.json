@@ -8,5 +8,9 @@
   },
   "devDependencies": {
     "shadow-cljs": "2.28.21"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }
