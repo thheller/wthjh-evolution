@@ -30,4 +30,11 @@
    :modules
    {:main {:init-fn wthjh.reagent-fragment/init}}
    :output-dir "public/js"}
+
+  :replicant
+  {:target :esm
+   :modules
+   {:main {:init-fn wthjh.replicant/init}}
+   :output-dir "public/js"}
+
   }}
