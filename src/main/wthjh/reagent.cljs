@@ -103,25 +103,26 @@
        [:th "State"]
        [:th "Last Update"]]]
 
-     (into [:tbody]
-       (for [row state]
-         [:tr
-          [:td {:class $col-num}
-           (:id row)]
-          [:td {:class $col-num}
-           (format-temp (:target row))]
-          [:td {:class $col-num
-                :data-hot (> (:current row) 25)}
-           [:span (format-temp (:current row))]]
-          [:td {:class $col-state}
-           (format-state (:state row))]
-          [:td {:class $col-ts}
-           (format-ts (:last-update row))]]
-         ))]
+     [:tbody
+      (for [row state]
+        ^{:key (:id row)}
+        [:tr
+         [:td {:class $col-num}
+          (:id row)]
+         [:td {:class $col-num}
+          (format-temp (:target row))]
+         [:td {:class $col-num
+               :data-hot (> (:current row) 25)}
+          [:span (format-temp (:current row))]]
+         [:td {:class $col-state}
+          (format-state (:state row))]
+         [:td {:class $col-ts}
+          (format-ts (:last-update row))]]
+        )]]
 
     [:div {:class (css :flex-1)}
      [:div {:class (css :p-4)}
-      "This animation should show stutter if the 16ms budget is used. Sorry, too lazy to find something pretty. This is just what I had at hand. My m4 pro mac mini only begins to stutter at about 20x slowdown. My old Surface Go Tablet stutters without any slowdown."]
+      "What the Heck? I just be doing something absurdly wrong here? How is this taking 90ms in dev without any artifical slowdowns? Release is reasonable, but what how does anyone work with this? I know I'm supposed to split this up into components and it would be faster this way, but come on."]
      [:svg {:class (css :block :w-full)
             :id "shadow-cljs-logo"
             :version "1.1"
@@ -171,7 +172,7 @@
 (defonce root (rdom/createRoot js/document.body))
 
 (defn render []
-  (.render root (r/as-element (ui-root @state-ref))))
+  (.render root (r/as-element [ui-root @state-ref])))
 
 (def states ["heating" "cooling" "off"])
 

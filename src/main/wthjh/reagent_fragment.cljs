@@ -104,25 +104,26 @@
            [:th "State"]
            [:th "Last Update"]]]
 
-         (into [:tbody]
-           (for [row state]
-             (<< [:tr
-                  [:td {:class $col-num}
-                   (:id row)]
-                  [:td {:class $col-num}
-                   (format-temp (:target row))]
-                  [:td {:class $col-num
-                        :data-hot (> (:current row) 25)}
-                   [:span (format-temp (:current row))]]
-                  [:td {:class $col-state}
-                   (format-state (:state row))]
-                  [:td {:class $col-ts}
-                   (format-ts (:last-update row))]])
-             ))]
+         ;; FIXME: lazy seqs not properly handled, use-memo-fn would need to force them
+         [:tbody
+          (into-array (for [row state]
+                        (<< [:tr
+                             [:td {:class $col-num}
+                              (:id row)]
+                             [:td {:class $col-num}
+                              (format-temp (:target row))]
+                             [:td {:class $col-num
+                                   :data-hot (> (:current row) 25)}
+                              [:span (format-temp (:current row))]]
+                             [:td {:class $col-state}
+                              (format-state (:state row))]
+                             [:td {:class $col-ts}
+                              (format-ts (:last-update row))]])
+                        ))]]
 
         [:div {:class (css :flex-1)}
          [:div {:class (css :p-4)}
-          "Frankly I do not care enough about react to actually work through this macro properly. This basic variant already gives a little speed boost (up to 50%), but for the most part this is coincidental to this hiccup having many static elements. A proper version that memoizes based on args would help substantially, but someone else is going to have to take that on. The idea wasn't creating a whole new library, but something that fits within default reagent as an opt-in optimization."]
+          "Substantially faster it seems. Very buggy and naive macro impl, but hopefully gets the idea across."]
 
          [:svg {:class (css :block :w-full)
                 :id "shadow-cljs-logo"
